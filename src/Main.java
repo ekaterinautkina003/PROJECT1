@@ -1,17 +1,38 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        printMenu();
+    }
+    public static void printMenu() {
+        Scanner scanner = new Scanner (System.in);
+        while (true) {
+            System.out.println("Чтобы запустить нужные вам функции нажмите:");
+            System.out.println("1 - изменить желаемое кол-во шагов за день");
+            System.out.println("2 - Напечатать статистику за месяц");
+            System.out.println("3 - вывести статистику");
+            System.out.println("4 - выйти из программы");
 
-        // Press Ctrl+R or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+            int i = scanner.nextInt();
 
-            // Press Ctrl+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Cmd+F8.
-            System.out.println("i = " + i);
+            if (i == 1) {
+                StepTracker.addNewNumberStepsPerDay();
+
+            } else if (i == 2) {
+                System.out.println("Статистика за месяц:");
+                MonthData.printDaysAndStepsFromMonth();
+
+            } else if (i == 3) {
+                System.out.println("Введите количество шагов:" );
+                StepTracker.printStatistic(scanner.nextInt());
+
+            } else if (i == 4) {
+                System.out.println("Программа завершена.");
+                System.exit(0);
+
+            } else {
+                System.out.println("Такой команды нет.");
+            }
         }
     }
 }
