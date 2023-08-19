@@ -13,6 +13,7 @@ public class Converter {
             return sum;
         }
     }
+
     public static int convertStepsToKilocalories(int steps) {
         int calories = 50;
         int sum = calories * steps;
