@@ -73,7 +73,7 @@ public class StepTracker {
             System.out.println();
             System.out.println(Converter.convertStepsToKilocalories(MonthData.days[0]));
             System.out.println();
-            System.out.println(Converter.convertToKm(month));
+            System.out.println(Converter.convertToKm(goalByStepsPerDay));
             System.out.println();
             System.out.println(MonthData.bestSeries(goalByStepsPerDay));
         }
