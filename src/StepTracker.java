@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class StepTracker {
-    MonthData[] monthToData = new MonthData[12];
+    static MonthData[] monthToData = new MonthData[12];
 
     StepTracker() {
         for (int i = 0; i < monthToData.length; i++) {
@@ -13,6 +13,7 @@ public class StepTracker {
 
     public static void changeStepGoal() {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Введите кол-во шагов");
         int steps = scanner.nextInt();
 
@@ -28,6 +29,7 @@ public class StepTracker {
 
     public static void addNewNumberStepsPerDay() {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Введите день:");
         int day = scanner.nextInt();
 
@@ -59,6 +61,7 @@ public class StepTracker {
         if (month < 0 || month > 12) {
             System.out.println("некорректный ввод месяца");
             System.exit(0);
+
         } else {
             MonthData.printDaysAndStepsFromMonth();
             System.out.println();
@@ -68,9 +71,9 @@ public class StepTracker {
             System.out.println();
             System.out.println(MonthData.averageSteps());
             System.out.println();
-            Converter.convertStepsToKilocalories(MonthData.days[0]);
+            System.out.println(Converter.convertStepsToKilocalories(MonthData.days[0]));
             System.out.println();
-            Converter.convertToKm(month);
+            System.out.println(Converter.convertToKm(month));
             System.out.println();
             System.out.println(MonthData.bestSeries(goalByStepsPerDay));
         }
