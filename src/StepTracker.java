@@ -1,3 +1,4 @@
+import java.time.Month;
 import java.util.Scanner;
 
 public class StepTracker {
@@ -11,7 +12,7 @@ public class StepTracker {
 
     public static int goalByStepsPerDay = 10000;
 
-    public static void changeStepGoal() {
+    public void changeStepGoal() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите кол-во шагов");
@@ -27,7 +28,7 @@ public class StepTracker {
         }
     }
 
-    public static void addNewNumberStepsPerDay() {
+    public void addNewNumberStepsPerDay() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите день:");
@@ -39,12 +40,15 @@ public class StepTracker {
         System.out.println("введите кол-во шагов:");
         long steps = scanner.nextLong();
 
-        if (day <= 30) {
-            MonthData.days[day] = (int) steps;
-
-            if (month <= 12) {
-                System.out.println("кол-во шагов было успешно изменено");
-                System.out.println();
+        if (day <= 30 && day > 0) {
+            if (month <= 12 && month > 0) {
+                if (steps > 0) {
+                    MonthData.days[day - 1] = (int) steps;
+                    System.out.println("Количество шагов было успешно изменено.");
+                } else {
+                    System.out.println("Некорректный ввод шагов.");
+                    System.exit(0);
+                }
 
             } else {
                 System.out.println("Неправильно введен месяц!");
@@ -52,30 +56,42 @@ public class StepTracker {
             }
 
         } else {
-            System.out.println("Неправильное кол-во шагов!");
+            System.out.println("Неправильное кол-во дней.");
             System.exit(0);
         }
     }
 
-    public static void printStatistic(int month) {
+    public void printStatistic(int month) {
+        MonthData monthData = new MonthData();
+        Converter converter = new Converter();
         if (month < 0 || month > 12) {
             System.out.println("некорректный ввод месяца");
             System.exit(0);
 
         } else {
-            MonthData.printDaysAndStepsFromMonth();
+            monthData.printDaysAndStepsFromMonth();
             System.out.println();
-            MonthData.sumStepsFromMonth();
+            monthData.sumStepsFromMonth();
             System.out.println();
-            System.out.println(MonthData.maxSteps());
+            System.out.println("Максимальное количество шагов за месяц: " + monthData.maxSteps());
             System.out.println();
-            System.out.println(MonthData.averageSteps());
+            System.out.println("Среднее количество шагов за месяц: " + monthData.averageSteps());
             System.out.println();
-            System.out.println(Converter.convertStepsToKilocalories(MonthData.days[0]));
-            System.out.println();
-            System.out.println(Converter.convertToKm(goalByStepsPerDay));
-            System.out.println();
-            System.out.println(MonthData.bestSeries(goalByStepsPerDay));
+            for (int i = 0; i < MonthData.days.length; i++) {
+                converter.convertStepsToKilocalories(MonthData.days[i]);
+                System.out.println();
+                break;
+            }
+
+            for (int i = 0; i < MonthData.days.length; i++) {
+                converter.convertToKm(MonthData.days[i]);
+                System.out.println();
+                break;
+            }
+            for (int i = 0; i < MonthData.days.length; i++) {
+                System.out.println("Лучшая серия шагов: " + monthData.bestSeries(MonthData.days[i]));
+                break;
+            }
         }
     }
 }

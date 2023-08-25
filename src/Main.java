@@ -6,6 +6,7 @@ public class Main {
     }
     public static void printMenu() {
         Scanner scanner = new Scanner (System.in);
+        StepTracker stepTracker = new StepTracker();
         while (true) {
             System.out.println("Чтобы запустить нужные вам функции нажмите:");
             System.out.println("1 - изменить желаемое кол-во шагов за определенный день");
@@ -16,14 +17,14 @@ public class Main {
             int i = scanner.nextInt();
 
             if (i == 1) {
-                StepTracker.addNewNumberStepsPerDay();
+                stepTracker.addNewNumberStepsPerDay();
 
             } else if (i == 2) {
                 System.out.println("Введите месяц(от 1 до 12):" );
-                StepTracker.printStatistic(scanner.nextInt());
+                stepTracker.printStatistic(scanner.nextInt());
 
             } else if (i == 3) {
-                StepTracker.changeStepGoal();
+                stepTracker.changeStepGoal();
 
             } else if (i == 4) {
                 System.out.println("Программа завершена.");

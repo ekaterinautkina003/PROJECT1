@@ -1,5 +1,5 @@
 public class Converter {
-    public static int convertToKm(int steps) {
+    public int convertToKm(int steps) {
         int sm = 75;
         int sum = sm * steps;
 
@@ -14,18 +14,18 @@ public class Converter {
         }
     }
 
-    public static int convertStepsToKilocalories(int steps) {
+    public int convertStepsToKilocalories(int steps) {
         int calories = 50;
         int sum = calories * steps;
         int kilocalories = calories * 20;
 
         if (sum < kilocalories) {
-            System.out.println("Вы еще не прошли нужное количество шагов, чтобы сжечь 1 килокалорий. Осталось сжечь: " + (kilocalories - sum) + "калорий.");
+            System.out.println("Вы еще не прошли нужное количество шагов, чтобы сжечь 1 килокалорий. Осталось сжечь: " + (kilocalories - sum) + " калорий.");
             return 0;
 
         } else {
             sum = sum / kilocalories;
-            System.out.println("Вы сожгли " + sum + "килокалорий.");
+            System.out.println("Вы сожгли " + sum + " килокалорий.");
             return sum;
         }
     }

@@ -2,18 +2,16 @@ public class MonthData {
 
     public static int[] days = new int[30];
 
-    public static void sumStepsFromMonth() {
+    public void sumStepsFromMonth() {
         int sum = 0;
         for (int i = 0; i < days.length; i++) {
             sum += days[i];
         }
 
-        for (int i = 1; i < days.length + 1; i++) {
-            System.out.println("все шаги за месяц: день " + i + " = " + sum);
-        }
+        System.out.println("Сумма шагов за месяц: " + sum);
     }
 
-    public static void printDaysAndStepsFromMonth() {
+    public void printDaysAndStepsFromMonth() {
         System.out.println("Шагов за первый день: " + days[0]);
         System.out.println("Шагов за второй день: " + days[1]);
         System.out.println("Шагов за третий день: " + days[2]);
@@ -46,10 +44,10 @@ public class MonthData {
         System.out.println("Шагов за тридцатый день: " + days[29]);
     }
 
-    public static int maxSteps() {
-        int sumMaxSteps = days[0];
+    public int maxSteps() {
+        int sumMaxSteps = 0;
 
-        for (int i = 1; i < days.length; i++) {
+        for (int i = 0; i < days.length; i++) {
             if (sumMaxSteps < days[i]) {
                 sumMaxSteps = days[i];
             }
@@ -58,28 +56,22 @@ public class MonthData {
         return sumMaxSteps;
     }
 
-    public static int bestSeries(int goalByStepsPerDay) {
-        goalByStepsPerDay = days[0];
+    public int bestSeries(int goalByStepsPerDay) {
         int currentSeries = 0;
         int finalSeries = 0;
 
-        for (int i = 1; i < days.length; i++) {
-            if (goalByStepsPerDay < days[i]) {
-                currentSeries -= 1;
+        for (int i = 0; i < days.length; ++i) {
+            if (days[i] > goalByStepsPerDay) {
+                currentSeries += 1;
                 goalByStepsPerDay = days[i];
-
-                if (goalByStepsPerDay >= days[i]) {
-                    currentSeries += 1;
-                }
             }
 
             finalSeries = currentSeries;
         }
-
         return finalSeries;
     }
 
-    public static int averageSteps() {
+    public int averageSteps() {
         int average;
         int sum = 0;
 
